@@ -20,9 +20,9 @@ public class VoiceInput : MonoBehaviour
     }*/
 
 
-    /*[SerializeField] private string[] m_Keywords;
+    [SerializeField] private string[] m_Keywords;
 
-    private KeywordRecognizer m_Recognizer; */
+    private KeywordRecognizer m_Recognizer; 
 
 
     [SerializeField] private string useSpecificDevice = "";
@@ -44,9 +44,9 @@ public class VoiceInput : MonoBehaviour
         objColor = cube.GetComponent<MeshRenderer>().material.color;
         fire = sphere.GetComponent<MeshRenderer>().material.color;
 
-        /*m_Recognizer = new KeywordRecognizer(m_Keywords);
+        m_Recognizer = new KeywordRecognizer(m_Keywords);
         m_Recognizer.OnPhraseRecognized += OnPhraseRecognized;
-        m_Recognizer.Start();*/
+        m_Recognizer.Start();
 
         var audio = GetComponent<AudioSource>();
 
@@ -70,7 +70,7 @@ public class VoiceInput : MonoBehaviour
         audio.clip = Microphone.Start(deviceName, true, 10, freq);
 
 
-        /*while (Microphone.devices.Any(x => x == deviceName))
+        while (Microphone.devices.Any(x => x == deviceName))
         {
             while (!Microphone.IsRecording(deviceName) || !audio.isPlaying)
             {
@@ -86,10 +86,10 @@ public class VoiceInput : MonoBehaviour
             }
             yield return null;
         }
-        yield return null;*/
+        yield return null;
     }
 
-    /*private void OnPhraseRecognized(PhraseRecognizedEventArgs args)
+    private void OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {
         StringBuilder builder = new StringBuilder();
         builder.AppendFormat("{0} ({1}){2}", args.text, args.confidence, Environment.NewLine);
@@ -97,7 +97,7 @@ public class VoiceInput : MonoBehaviour
         builder.AppendFormat("\tDuration: {0} seconds{1}", args.phraseDuration.TotalSeconds, Environment.NewLine);
         Debug.Log(builder.ToString());
 
-        if (args.text == "fireball")
+        if (args.text == "fire")
         {
             Debug.Log("Ignition");
         }
@@ -118,7 +118,7 @@ public class VoiceInput : MonoBehaviour
             Debug.Log("Quake");
         }
     }
-    */
+    
 
         public static float MicLoudness;
 
@@ -158,7 +158,7 @@ public class VoiceInput : MonoBehaviour
             
             if (MicLoudness * 100 > micVariable)
             {
-                micVariable = 100 * MicLoudness;
+                micVariable = 10 * MicLoudness;
             } else 
             {
                 micVariable /= 1.25f;
